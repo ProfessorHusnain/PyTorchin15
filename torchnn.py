@@ -51,4 +51,13 @@ if __name__ == "__main__":
 
         print(f"Epoch:{epoch} loss is {loss.item()}")
     
- 
+    with open('model_state.pt', 'wb') as f: 
+        save(clf.state_dict(), f) 
+
+    with open('model_state.pt', 'rb') as f: 
+        clf.load_state_dict(load(f))  
+
+    img = Image.open('img_3.jpg') 
+    img_tensor = ToTensor()(img).unsqueeze(0).to('cpu')
+
+    print(torch.argmax(clf(img_tensor)))
