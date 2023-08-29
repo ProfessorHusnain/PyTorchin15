@@ -30,4 +30,10 @@ class ImageClassifier(nn.Module):
     def forward(self, x): 
         return self.model(x)
 
+# Instance of the neural network, loss, optimizer 
+clf = ImageClassifier().to('cpu')
+opt = Adam(clf.parameters(), lr=1e-3)
+loss_fn = nn.CrossEntropyLoss() 
+
+ 
  
