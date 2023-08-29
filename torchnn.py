@@ -44,5 +44,11 @@ if __name__ == "__main__":
             yhat = clf(X) 
             loss = loss_fn(yhat, y) 
 
- 
+            # Apply backprop 
+            opt.zero_grad()
+            loss.backward() 
+            opt.step() 
+
+        print(f"Epoch:{epoch} loss is {loss.item()}")
+    
  
